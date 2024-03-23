@@ -9,7 +9,8 @@ import { useState } from "react";
 import { CharacterCardSkeleton } from "@/components/CharacterCardSkeleton";
 import { Button } from "@/components/Button";
 import { extractCharactersData } from "@/utils/extractCharactersData";
-import { ArrowIcon } from "@/components/Icons";
+import { ArrowIcon, Spinner } from "@/components/Icons";
+import { Search } from "@/components/Search";
 
 const Container = styled.div`
   margin: 0px auto;
@@ -20,6 +21,11 @@ const Container = styled.div`
     padding: 40px;
     max-width: 1180px;
   }
+`;
+
+const PageTitle = styled.h1`
+  margin-bottom: 36px;
+  font-size: 40px;
 `;
 
 const CharacterGrid = styled.div`
@@ -41,15 +47,36 @@ const ButtonContainer = styled.div`
   justify-content: center;
 `;
 
+const SpinnerContainer = styled.div`
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 8px;
+  width: fit-content;
+  margin: auto;
+`;
+
 interface HomeProps {
   characters: Character[];
+  totalCharacters: number;
 }
+
+export type SearchStatus =
+  | "idle"
+  | "loading"
+  | "error"
+  | "no-results"
+  | "success";
 
 type LoadMoreStatus = "idle" | "loading" | "error";
 
 export default function Home(props: HomeProps) {
   const [characters, setCharacters] = useState(props.characters);
+  const [totalCharacters, setTotalCharacters] = useState(props.totalCharacters);
   const [loadMoreStatus, setLoadMoreStatus] = useState<LoadMoreStatus>("idle");
+  const [searchStatus, setSearchStatus] = useState<SearchStatus>("idle");
+  const [searchedCharacter, setSearchedCharacter] = useState<Character | null>(
+    null
+  );
 
   const loadMore = async () => {
     try {
@@ -58,7 +85,8 @@ export default function Home(props: HomeProps) {
         method: "GET",
       });
       const data = await res.json();
-      setCharacters((prev) => [...prev, ...data]);
+      setCharacters((prev) => [...prev, ...data.characters]);
+      setTotalCharacters(data.totalCharacters);
       setLoadMoreStatus("idle");
     } catch (error) {
       setLoadMoreStatus("error");
@@ -74,23 +102,51 @@ export default function Home(props: HomeProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <h1>Marvel</h1>
-        <CharacterGrid>
-          {characters.map((character) => (
-            <CharacterCard key={character.id} character={character} />
-          ))}
-          {loadMoreStatus === "loading" &&
-            Array.from({ length: 6 }).map((_, index) => (
-              <CharacterCardSkeleton key={index} />
-            ))}
-        </CharacterGrid>
-        {loadMoreStatus !== "loading" && (
-          <ButtonContainer>
-            <Button variant="secondary" onClick={loadMore}>
-              Load more
-              <ArrowIcon />
-            </Button>
-          </ButtonContainer>
+        <PageTitle>Search your character</PageTitle>
+        <Search
+          setSearchedCharacter={setSearchedCharacter}
+          searchStatus={searchStatus}
+          setSearchStatus={setSearchStatus}
+          characters={characters}
+        />
+
+        {searchStatus === "idle" ? (
+          // No search is in process, render the grid.
+          <>
+            <CharacterGrid>
+              {characters.map((character) => (
+                <CharacterCard key={character.id} character={character} />
+              ))}
+              {loadMoreStatus === "loading" &&
+                Array.from({ length: 6 }).map((_, index) => (
+                  <CharacterCardSkeleton key={index} />
+                ))}
+            </CharacterGrid>
+            {loadMoreStatus !== "loading" &&
+              // Don't show the button if there are no more results to fetch.
+              totalCharacters > characters.length && (
+                <ButtonContainer>
+                  <Button variant="secondary" onClick={loadMore}>
+                    Load more
+                    <ArrowIcon />
+                  </Button>
+                </ButtonContainer>
+              )}
+          </>
+        ) : (
+          <>
+            {searchStatus === "success" && searchedCharacter && (
+              <CharacterGrid>
+                <CharacterCard character={searchedCharacter} />
+              </CharacterGrid>
+            )}
+            {searchStatus === "no-results" && <h4>No results</h4>}
+            {searchStatus === "loading" && (
+              <SpinnerContainer>
+                <Spinner />
+              </SpinnerContainer>
+            )}
+          </>
         )}
       </Container>
     </>
@@ -108,5 +164,5 @@ export async function getStaticProps() {
 
   const characters = extractCharactersData(data.data.results);
 
-  return { props: { characters } };
+  return { props: { characters, totalCharacters: data.data.total } };
 }
