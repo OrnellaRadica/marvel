@@ -4,7 +4,12 @@ import styled from "styled-components";
 import { CharacterCard } from "@/components/CharacterCard";
 import { PRIVATE_KEY, PUBLIC_KEY } from "@/config";
 import { generateMD5Hash } from "@/utils/generateMD5Hash";
-import { Character, characterSchema } from "@/types/schemas";
+import { Character } from "@/types/schemas";
+import { useState } from "react";
+import { CharacterCardSkeleton } from "@/components/CharacterCardSkeleton";
+import { Button } from "@/components/Button";
+import { extractCharactersData } from "@/utils/extractCharactersData";
+import { ArrowIcon } from "@/components/Icons";
 
 const Container = styled.div`
   margin: 0px auto;
@@ -21,6 +26,7 @@ const CharacterGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 32px;
+  margin-bottom: 16px;
 
   @media (min-width: 768px) and (max-width: 1023px) {
     grid-template-columns: repeat(2, 1fr);
@@ -30,11 +36,35 @@ const CharacterGrid = styled.div`
   }
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 interface HomeProps {
   characters: Character[];
 }
 
-export default function Home({ characters }: HomeProps) {
+type LoadMoreStatus = "idle" | "loading" | "error";
+
+export default function Home(props: HomeProps) {
+  const [characters, setCharacters] = useState(props.characters);
+  const [loadMoreStatus, setLoadMoreStatus] = useState<LoadMoreStatus>("idle");
+
+  const loadMore = async () => {
+    try {
+      setLoadMoreStatus("loading");
+      const res = await fetch(`/api/characters?offset=${characters.length}`, {
+        method: "GET",
+      });
+      const data = await res.json();
+      setCharacters((prev) => [...prev, ...data]);
+      setLoadMoreStatus("idle");
+    } catch (error) {
+      setLoadMoreStatus("error");
+    }
+  };
+
   return (
     <>
       <Head>
@@ -49,7 +79,19 @@ export default function Home({ characters }: HomeProps) {
           {characters.map((character) => (
             <CharacterCard key={character.id} character={character} />
           ))}
+          {loadMoreStatus === "loading" &&
+            Array.from({ length: 6 }).map((_, index) => (
+              <CharacterCardSkeleton key={index} />
+            ))}
         </CharacterGrid>
+        {loadMoreStatus !== "loading" && (
+          <ButtonContainer>
+            <Button variant="secondary" onClick={loadMore}>
+              Load more
+              <ArrowIcon />
+            </Button>
+          </ButtonContainer>
+        )}
       </Container>
     </>
   );
@@ -64,11 +106,7 @@ export async function getStaticProps() {
   const res = await fetch(url);
   const data = await res.json();
 
-  const characters: Character[] = data.data.results.map(
-    (character: unknown) => {
-      return characterSchema.parse(character);
-    }
-  );
+  const characters = extractCharactersData(data.data.results);
 
   return { props: { characters } };
 }

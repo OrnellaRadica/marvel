@@ -10,12 +10,20 @@ const UrlsEntity = z.object({
   url: z.string(),
 });
 
-export const characterSchema = z.object({
+export const apiCharacterSchema = z.object({
   id: z.number(),
   name: z.string(),
   description: z.string(),
   thumbnail: Thumbnail,
   urls: z.array(UrlsEntity).nullable(),
 });
+
+export const characterSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  description: z.string(),
+  thumbnail: Thumbnail,
+  url: z.string().optional(),
+})
 
 export type Character = z.infer<typeof characterSchema>;

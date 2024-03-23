@@ -1,13 +1,18 @@
 import { Character } from "@/types/schemas";
 import Image from "next/image";
-import Link from "next/link";
 import styled from "styled-components";
+import { Button } from "./Button";
+import { ArrowIcon } from "./Icons";
 
 const CharacterRoot = styled.div`
   border-radius: 4px;
   overflow: hidden;
   background: white;
   outline: 1px solid #e0e0e0;
+  min-height: auto;
+  @media (min-width: 768px) {
+    min-height: 480px;
+  }
 `;
 
 const CharacterImg = styled(Image)`
@@ -60,28 +65,9 @@ const CharacterDescription = styled.p`
   }
 `;
 
-const CharacterLink = styled(Link)`
-  background-color: #444;
-  color: #fff;
-  padding: 16px 24px;
-  text-decoration: none;
-  border-radius: 4px;
-  margin-left: auto;
+const ButtonContainer = styled.div`
   display: flex;
-  gap: 12px;
-  font-weight: 600;
-  font-size: 18px;
-  letter-spacing: -0.24px;
-  &:hover {
-    background-color: #1b1a1a;
-  }
-`;
-
-const ArrowIcon = styled.svg`
-  width: 20px;
-  fill: #fff;
-  stroke: #fff;
-  stroke-width: 2px;
+  justify-content: end;
 `;
 
 interface CharacterCardProps {
@@ -104,16 +90,18 @@ export function CharacterCard({ character }: CharacterCardProps) {
             ? character.description
             : "(No description available)"}
         </CharacterDescription>
-        {/* TODO: get url */}
-        <CharacterLink href="/" target="blank">
-          Read more
-          <ArrowIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-            <path
-              d="m31.71 15.29-10-10-1.42 1.42 8.3 8.29H0v2h28.59l-8.29 8.29 1.41 1.41 10-10a1 1 0 0 0 0-1.41z"
-              data-name="3-Arrow Right"
-            />
-          </ArrowIcon>
-        </CharacterLink>
+        <ButtonContainer>
+          {character.url && (
+            <Button
+              href={character.url}
+              target="_blank"
+              variant="primary"
+            >
+              Read more
+              <ArrowIcon/>
+            </Button>
+          )}
+        </ButtonContainer>
       </CharacterInfo>
     </CharacterRoot>
   );
