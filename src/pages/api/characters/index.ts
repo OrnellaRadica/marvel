@@ -1,4 +1,5 @@
 import { PRIVATE_KEY, PUBLIC_KEY } from "@/config";
+import { apiResponseSchema } from "@/types/schemas";
 import { extractCharactersData } from "@/utils/extractCharactersData";
 import { generateMD5Hash } from "@/utils/generateMD5Hash";
 import { randomUUID } from "crypto";
@@ -25,10 +26,14 @@ const getCharacters = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const response = await fetch(url);
     const data = await response.json();
+    const parsedData = apiResponseSchema.parse(data);
 
-    const characters = extractCharactersData(data.data.results);
+    const characters = extractCharactersData(parsedData.data.results);
 
-    res.status(200).json({ characters, totalCharacters: data.data.total });
+    return res
+      .status(200)
+      .json({ characters, totalCharacters: parsedData.data.total });
+
   } catch (error) {
     res.status(500).json({
       error: JSON.stringify(error),

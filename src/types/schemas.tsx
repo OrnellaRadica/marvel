@@ -26,4 +26,13 @@ export const characterSchema = z.object({
   url: z.string().optional(),
 })
 
+export const apiResponseSchema = z.object({
+  attributionHTML: z.string(),
+  data: z.object({
+    total: z.number(),
+    results: z.array(apiCharacterSchema),
+  }),
+});
+
+
 export type Character = z.infer<typeof characterSchema>;

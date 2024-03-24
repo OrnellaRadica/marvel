@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { CharacterCard } from "@/components/CharacterCard";
 import { PRIVATE_KEY, PUBLIC_KEY } from "@/config";
 import { generateMD5Hash } from "@/utils/generateMD5Hash";
-import { Character } from "@/types/schemas";
+import { Character, apiResponseSchema } from "@/types/schemas";
 import { useState } from "react";
 import { CharacterCardSkeleton } from "@/components/CharacterCardSkeleton";
 import { Button } from "@/components/Button";
@@ -15,7 +15,7 @@ import { Search } from "@/components/Search";
 const Container = styled.div`
   margin: 0px auto;
   padding: 20px;
-  max-width: 440px;
+  max-width: 480px;
 
   @media (min-width: 768px) {
     padding: 40px;
@@ -45,6 +45,9 @@ const CharacterGrid = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 `;
 
 const SpinnerContainer = styled.div`
@@ -58,6 +61,7 @@ const SpinnerContainer = styled.div`
 interface HomeProps {
   characters: Character[];
   totalCharacters: number;
+  attributionHTML: string;
 }
 
 export type SearchStatus =
@@ -130,6 +134,9 @@ export default function Home(props: HomeProps) {
                     Load more
                     <ArrowIcon />
                   </Button>
+                  {loadMoreStatus === "error" && (
+                    <p>An error has occurred, please try again</p>
+                  )}
                 </ButtonContainer>
               )}
           </>
@@ -148,6 +155,10 @@ export default function Home(props: HomeProps) {
             )}
           </>
         )}
+
+        {searchStatus === "error" && (
+          <p>An error has occurred, please try again</p>
+        )}
       </Container>
     </>
   );
@@ -161,8 +172,15 @@ export async function getStaticProps() {
 
   const res = await fetch(url);
   const data = await res.json();
+  const parsedData = apiResponseSchema.parse(data);
 
   const characters = extractCharactersData(data.data.results);
 
-  return { props: { characters, totalCharacters: data.data.total } };
+  return {
+    props: {
+      characters,
+      totalCharacters: parsedData.data.total,
+      attributionHTML: parsedData.attributionHTML,
+    },
+  };
 }

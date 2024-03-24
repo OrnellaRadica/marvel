@@ -175,6 +175,7 @@ export function Search({
           value={characterName}
           placeholder="Name of character"
           onChange={handleChange}
+          id="search-input"
         />
         <SubmitButton type="submit" disabled={searchStatus === "loading"}>
           <SearchIcon />
