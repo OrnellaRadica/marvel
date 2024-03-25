@@ -3,7 +3,7 @@ import { ComponentProps } from "react";
 import styled, { css } from "styled-components";
 
 interface BaseProps {
-  variant: "primary" | "secondary";
+  variant?: "primary" | "secondary";
   children: React.ReactNode;
 }
 
@@ -39,8 +39,12 @@ function secondaryColorStyles() {
   `;
 }
 
-function buttonBaseStyles(props: Props) {
-  const { variant } = props;
+interface ButtonBaseStylesProps {
+  $variant?: string;
+}
+
+function buttonBaseStyles(props: ButtonBaseStylesProps) {
+  const { $variant } = props;
 
   return css`
     padding: 16px 24px;
@@ -54,7 +58,7 @@ function buttonBaseStyles(props: Props) {
     border: none;
     width: fit-content;
     ${() => {
-      switch (variant) {
+      switch ($variant) {
         case "primary":
           return primaryColorStyles();
         case "secondary":
@@ -66,18 +70,25 @@ function buttonBaseStyles(props: Props) {
   `;
 }
 
-const StyledButton = styled.button<BaseProps & ButtonProps>(buttonBaseStyles);
-const StyledAnchor = styled.a<BaseProps & LinkProps>(buttonBaseStyles);
-const StyledLink = styled(Link)<BaseProps & LinkProps>(buttonBaseStyles);
+const StyledButton = styled.button<ButtonBaseStylesProps & ButtonProps>(
+  buttonBaseStyles
+);
+const StyledAnchor = styled.a<ButtonBaseStylesProps & LinkProps>(
+  buttonBaseStyles
+);
+const StyledLink = styled(Link)<ButtonBaseStylesProps & LinkProps>(
+  buttonBaseStyles
+);
 
 export function Button(props: Props) {
-  if (typeof props.href !== "string") {
-    return <StyledButton type="button" {...props} />;
+  const { variant, ...rest } = props;
+  if (typeof rest.href !== "string") {
+    return <StyledButton type="button" {...rest} $variant={variant} />;
   }
 
-  if (typeof props.href === "string" && props.href.startsWith("/")) {
-    return <StyledLink {...props} />;
+  if (typeof rest.href === "string" && rest.href.startsWith("/")) {
+    return <StyledLink {...rest} $variant={variant} />;
   }
   // In this case it's an external link
-  return <StyledAnchor {...props} />;
+  return <StyledAnchor {...rest} $variant={variant} />;
 }

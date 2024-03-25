@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render the skeleton card 1`] = `
+<div
+  className="sc-f8251a78-0 iyFLxy"
+>
+  <div
+    className="sc-f8251a78-1 evSZwZ"
+  />
+  <div
+    className="sc-f8251a78-2 wTmMH"
+  >
+    <div
+      className="sc-f8251a78-3 bmXgut"
+    />
+    <div
+      className="sc-f8251a78-4 sscsN"
+    />
+    <div
+      className="sc-f8251a78-5 jmUVTP"
+    />
+  </div>
+</div>
+`;

@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Should return a button 1`] = `
+<button
+  className="sc-16ed12da-0 eVbrCW"
+  type="button"
+>
+  Example button
+</button>
+`;
+
+exports[`Button Should return a button with secondary prop 1`] = `
+<button
+  className="sc-16ed12da-0 bwtpxf"
+  type="button"
+>
+  Example button
+</button>
+`;
+
+exports[`Button Should return a button with type 'submit' 1`] = `
+<button
+  className="sc-16ed12da-0 eVbrCW"
+  type="submit"
+>
+  Example button
+</button>
+`;
+
+exports[`Button Should return a link NextJs component 1`] = `
+<a
+  className="sc-16ed12da-2 ksRcFg"
+  href="/"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onTouchStart={[Function]}
+>
+  Example button
+</a>
+`;
+
+exports[`Button Should return a link to an external href 1`] = `
+<a
+  className="sc-16ed12da-1 dPvqNf"
+  href="https://www.marvel.com/"
+>
+  Example button
+</a>
+`;
+
+exports[`Button Should return a link to an external href in a new tab 1`] = `
+<a
+  className="sc-16ed12da-1 dPvqNf"
+  href="https://www.marvel.com/"
+  target="_blank"
+>
+  Example button
+</a>
+`;

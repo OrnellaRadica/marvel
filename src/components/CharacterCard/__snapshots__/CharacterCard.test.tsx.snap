@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CharacterCard Should return a CharacterCard 1`] = `
+<div
+  className="sc-c11bb302-0 fmhZlg"
+>
+  <img
+    alt="A-Bomb (HAS) image"
+    className="sc-c11bb302-1 dFhKfx"
+    data-nimg="1"
+    decoding="async"
+    height={290}
+    loading="lazy"
+    onError={[Function]}
+    onLoad={[Function]}
+    src="/_next/image?url=http%3A%2F%2Fi.annihil.us%2Fu%2Fprod%2Fmarvel%2Fi%2Fmg%2F3%2F20%2F5232158de5b16.jpg&w=1080&q=75"
+    srcSet="/_next/image?url=http%3A%2F%2Fi.annihil.us%2Fu%2Fprod%2Fmarvel%2Fi%2Fmg%2F3%2F20%2F5232158de5b16.jpg&w=640&q=75 1x, /_next/image?url=http%3A%2F%2Fi.annihil.us%2Fu%2Fprod%2Fmarvel%2Fi%2Fmg%2F3%2F20%2F5232158de5b16.jpg&w=1080&q=75 2x"
+    style={
+      {
+        "color": "transparent",
+      }
+    }
+    width={436}
+  />
+  <div
+    className="sc-c11bb302-2 BjuzK"
+  >
+    <h4
+      className="sc-c11bb302-3 kIA-DrD"
+    >
+      A-Bomb (HAS)
+    </h4>
+    <p
+      className="sc-c11bb302-4 gpvkkM"
+    >
+      Rick Jones has been Hulk's best bud since day one, but now he's more than a friend...he's a teammate! Transformed by a Gamma energy explosion, A-Bomb's thick, armored skin is just as strong and powerful as it is blue. And when he curls into action, he uses it like a giant bowling ball of destruction! 
+    </p>
+    <div
+      className="sc-c11bb302-5 krayon"
+    >
+      <a
+        className="sc-16ed12da-1 cSdsMB"
+        href="http://marvel.com/characters/76/a-bomb?utm_campaign=apiRef&utm_source=47152527ba510896e61f6b56a1a68bde"
+        target="_blank"
+      >
+        Read more
+        <svg
+          fill="currentColor"
+          stroke="currentColor"
+          strokeWidth="2px"
+          viewBox="0 0 32 32"
+          width="20px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m31.71 15.29-10-10-1.42 1.42 8.3 8.29H0v2h28.59l-8.29 8.29 1.41 1.41 10-10a1 1 0 0 0 0-1.41z"
+            data-name="3-Arrow Right"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CharacterCard Should return a CharacterCard with ('No description available') 1`] = `
+<div
+  className="sc-c11bb302-0 fmhZlg"
+>
+  <img
+    alt="A-Bomb (HAS) image"
+    className="sc-c11bb302-1 dFhKfx"
+    data-nimg="1"
+    decoding="async"
+    height={290}
+    loading="lazy"
+    onError={[Function]}
+    onLoad={[Function]}
+    src="/_next/image?url=http%3A%2F%2Fi.annihil.us%2Fu%2Fprod%2Fmarvel%2Fi%2Fmg%2F3%2F20%2F5232158de5b16.jpg&w=1080&q=75"
+    srcSet="/_next/image?url=http%3A%2F%2Fi.annihil.us%2Fu%2Fprod%2Fmarvel%2Fi%2Fmg%2F3%2F20%2F5232158de5b16.jpg&w=640&q=75 1x, /_next/image?url=http%3A%2F%2Fi.annihil.us%2Fu%2Fprod%2Fmarvel%2Fi%2Fmg%2F3%2F20%2F5232158de5b16.jpg&w=1080&q=75 2x"
+    style={
+      {
+        "color": "transparent",
+      }
+    }
+    width={436}
+  />
+  <div
+    className="sc-c11bb302-2 BjuzK"
+  >
+    <h4
+      className="sc-c11bb302-3 kIA-DrD"
+    >
+      A-Bomb (HAS)
+    </h4>
+    <p
+      className="sc-c11bb302-4 gpvkkM"
+    >
+      (No description available)
+    </p>
+    <div
+      className="sc-c11bb302-5 krayon"
+    >
+      <a
+        className="sc-16ed12da-1 cSdsMB"
+        href="http://marvel.com/characters/76/a-bomb?utm_campaign=apiRef&utm_source=47152527ba510896e61f6b56a1a68bde"
+        target="_blank"
+      >
+        Read more
+        <svg
+          fill="currentColor"
+          stroke="currentColor"
+          strokeWidth="2px"
+          viewBox="0 0 32 32"
+          width="20px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m31.71 15.29-10-10-1.42 1.42 8.3 8.29H0v2h28.59l-8.29 8.29 1.41 1.41 10-10a1 1 0 0 0 0-1.41z"
+            data-name="3-Arrow Right"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+`;

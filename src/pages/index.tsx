@@ -1,12 +1,14 @@
 import Head from "next/head";
 import { randomUUID } from "crypto";
 import styled from "styled-components";
-import { CharacterCard } from "@/components/CharacterCard";
 import { PRIVATE_KEY, PUBLIC_KEY } from "@/config";
 import { generateMD5Hash } from "@/utils/generateMD5Hash";
 import { Character, apiResponseSchema } from "@/types/schemas";
 import { useState } from "react";
-import { CharacterCardSkeleton } from "@/components/CharacterCardSkeleton";
+import {
+  CharacterCardSkeleton,
+  CharacterCard,
+} from "@/components/CharacterCard";
 import { Button } from "@/components/Button";
 import { extractCharactersData } from "@/utils/extractCharactersData";
 import { ArrowIcon, Spinner } from "@/components/Icons";

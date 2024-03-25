@@ -24,6 +24,13 @@ const Search = styled.button`
   background-color: #202020;
   border: none;
   padding: 12px;
+
+  svg {
+    transition: scale 0.3s ease-in-out;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
 `;
 
 export function Header() {
@@ -56,7 +63,7 @@ export function Header() {
           ></path>
         </svg>
       </Logo>
-      <Search onClick={handleClick}>
+      <Search onClick={handleClick} aria-label="go to search">
         <SearchIcon />
       </Search>
     </HeaderRoot>

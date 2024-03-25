@@ -103,15 +103,19 @@ export function Search({
   };
 
   const handleSearch = async (characterName: string) => {
-    router.push(
-      { query: { ...router.query, search: characterName } },
-      undefined,
-      { shallow: true }
+    if (router.query.search !== characterName) {
+      router.push(
+        { query: { ...router.query, search: characterName } },
+        undefined,
+        { shallow: true }
+      );
+    }
+
+    const lowerCaseCharacter = characterName.toLocaleLowerCase();
+    const characterFound = characters.find(
+      (character) => character.name.toLocaleLowerCase() === lowerCaseCharacter
     );
 
-    const characterFound = characters.find(
-      (character) => character.name.toLocaleLowerCase() === characterName
-    );
     if (characterFound) {
       setSearchedCharacter(characterFound);
       setSearchStatus("success");
@@ -168,7 +172,7 @@ export function Search({
 
   return (
     <SearchRoot>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} data-testid="search-form">
         <Input
           type="text"
           ref={inputRef}
@@ -176,8 +180,13 @@ export function Search({
           placeholder="Name of character"
           onChange={handleChange}
           id="search-input"
+          data-testid="search-input"
         />
-        <SubmitButton type="submit" disabled={searchStatus === "loading"}>
+        <SubmitButton
+          type="submit"
+          disabled={searchStatus === "loading"}
+          aria-label="submit search"
+        >
           <SearchIcon />
         </SubmitButton>
       </Form>

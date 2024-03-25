@@ -1,8 +1,8 @@
 import { Character } from "@/types/schemas";
 import Image from "next/image";
 import styled from "styled-components";
-import { Button } from "./Button";
-import { ArrowIcon } from "./Icons";
+import { Button } from "../Button/Button";
+import { ArrowIcon } from "../Icons";
 
 const CharacterRoot = styled.div`
   border-radius: 4px;
