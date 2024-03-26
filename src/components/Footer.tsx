@@ -4,7 +4,7 @@ const FooterRoot = styled.footer`
   max-width: 480px;
   padding: 20px;
   margin: auto;
-  font-size: 14px;
+  font-size: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;

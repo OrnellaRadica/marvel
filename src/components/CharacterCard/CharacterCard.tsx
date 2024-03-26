@@ -44,7 +44,7 @@ const CharacterName = styled.h4`
   white-space: nowrap;
   @media (min-width: 768px) {
     font-size: 24px;
-    line-height: 24px;
+    line-height: 32px;
   }
 `;
 
@@ -76,7 +76,7 @@ interface CharacterCardProps {
 
 export function CharacterCard({ character }: CharacterCardProps) {
   return (
-    <CharacterRoot>
+    <CharacterRoot data-testid="character-card">
       <CharacterImg
         src={character.thumbnail.path + "." + character.thumbnail.extension}
         width={436}
@@ -84,7 +84,7 @@ export function CharacterCard({ character }: CharacterCardProps) {
         alt={character.name + " image"}
       />
       <CharacterInfo>
-        <CharacterName>{character.name}</CharacterName>
+        <CharacterName data-testid={character.name}>{character.name}</CharacterName>
         <CharacterDescription>
           {character.description
             ? character.description

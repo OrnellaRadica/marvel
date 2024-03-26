@@ -2,11 +2,12 @@
 
 exports[`CharacterCard Should return a CharacterCard 1`] = `
 <div
-  className="sc-c11bb302-0 fmhZlg"
+  className="sc-4ee5e613-0 iSdmWq"
+  data-testid="character-card"
 >
   <img
     alt="A-Bomb (HAS) image"
-    className="sc-c11bb302-1 dFhKfx"
+    className="sc-4ee5e613-1 dEJpgr"
     data-nimg="1"
     decoding="async"
     height={290}
@@ -23,20 +24,21 @@ exports[`CharacterCard Should return a CharacterCard 1`] = `
     width={436}
   />
   <div
-    className="sc-c11bb302-2 BjuzK"
+    className="sc-4ee5e613-2 fOHdqQ"
   >
     <h4
-      className="sc-c11bb302-3 kIA-DrD"
+      className="sc-4ee5e613-3 cInrba"
+      data-testid="A-Bomb (HAS)"
     >
       A-Bomb (HAS)
     </h4>
     <p
-      className="sc-c11bb302-4 gpvkkM"
+      className="sc-4ee5e613-4 dkkEvi"
     >
       Rick Jones has been Hulk's best bud since day one, but now he's more than a friend...he's a teammate! Transformed by a Gamma energy explosion, A-Bomb's thick, armored skin is just as strong and powerful as it is blue. And when he curls into action, he uses it like a giant bowling ball of destruction! 
     </p>
     <div
-      className="sc-c11bb302-5 krayon"
+      className="sc-4ee5e613-5 cgUpB"
     >
       <a
         className="sc-16ed12da-1 cSdsMB"
@@ -65,11 +67,12 @@ exports[`CharacterCard Should return a CharacterCard 1`] = `
 
 exports[`CharacterCard Should return a CharacterCard with ('No description available') 1`] = `
 <div
-  className="sc-c11bb302-0 fmhZlg"
+  className="sc-4ee5e613-0 iSdmWq"
+  data-testid="character-card"
 >
   <img
     alt="A-Bomb (HAS) image"
-    className="sc-c11bb302-1 dFhKfx"
+    className="sc-4ee5e613-1 dEJpgr"
     data-nimg="1"
     decoding="async"
     height={290}
@@ -86,20 +89,21 @@ exports[`CharacterCard Should return a CharacterCard with ('No description avail
     width={436}
   />
   <div
-    className="sc-c11bb302-2 BjuzK"
+    className="sc-4ee5e613-2 fOHdqQ"
   >
     <h4
-      className="sc-c11bb302-3 kIA-DrD"
+      className="sc-4ee5e613-3 cInrba"
+      data-testid="A-Bomb (HAS)"
     >
       A-Bomb (HAS)
     </h4>
     <p
-      className="sc-c11bb302-4 gpvkkM"
+      className="sc-4ee5e613-4 dkkEvi"
     >
       (No description available)
     </p>
     <div
-      className="sc-c11bb302-5 krayon"
+      className="sc-4ee5e613-5 cgUpB"
     >
       <a
         className="sc-16ed12da-1 cSdsMB"
