@@ -45,7 +45,7 @@ const CharacterLink = styled.div`
 
 export function CharacterCardSkeleton() {
   return (
-    <CharacterRoot>
+    <CharacterRoot data-testid="skeleton-card">
       <CharacterImg/>
       <CharacterInfo>
         <CharacterName/>

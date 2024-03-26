@@ -106,6 +106,10 @@ export default function Home(props: HomeProps) {
         <meta name="description" content="Marvel search character app" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="theme-color"
+          content="202020"
+        />
       </Head>
       <Container>
         <PageTitle>Search your character</PageTitle>
@@ -119,7 +123,7 @@ export default function Home(props: HomeProps) {
         {searchStatus === "idle" ? (
           // No search is in process, render the grid.
           <>
-            <CharacterGrid>
+            <CharacterGrid data-testid="characters-grid">
               {characters.map((character) => (
                 <CharacterCard key={character.id} character={character} />
               ))}
@@ -151,7 +155,7 @@ export default function Home(props: HomeProps) {
             )}
             {searchStatus === "no-results" && <h4>No results</h4>}
             {searchStatus === "loading" && (
-              <SpinnerContainer>
+              <SpinnerContainer data-testid="search-loading">
                 <Spinner />
               </SpinnerContainer>
             )}

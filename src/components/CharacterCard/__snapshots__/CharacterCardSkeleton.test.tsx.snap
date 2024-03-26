@@ -2,22 +2,23 @@
 
 exports[`Should render the skeleton card 1`] = `
 <div
-  className="sc-f8251a78-0 iyFLxy"
+  className="sc-ead767e7-0 jeLVew"
+  data-testid="skeleton-card"
 >
   <div
-    className="sc-f8251a78-1 evSZwZ"
+    className="sc-ead767e7-1 gARGUb"
   />
   <div
-    className="sc-f8251a78-2 wTmMH"
+    className="sc-ead767e7-2 hPYKlF"
   >
     <div
-      className="sc-f8251a78-3 bmXgut"
+      className="sc-ead767e7-3 lnUtYP"
     />
     <div
-      className="sc-f8251a78-4 sscsN"
+      className="sc-ead767e7-4 gAfFr"
     />
     <div
-      className="sc-f8251a78-5 jmUVTP"
+      className="sc-ead767e7-5 fScbDl"
     />
   </div>
 </div>

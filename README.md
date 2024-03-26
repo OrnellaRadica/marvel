@@ -31,11 +31,24 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## To run the tests
 
-This project has automated tests running with Jest.
+This project has automated tests running with Jest and Cypress
+Jest tests will run on github actions.
+Cypress tests should run manually.
 Before pushing your changes, run your tests locally. 
 
+To test Jest:
 ```bash
 npm run test
+```
+
+To test Cypress:
+```bash
+npm run e2e
+```
+
+To open Cypress tests:
+```bash
+npm run e2e:open
 ```
 
 ## Technologies
@@ -47,3 +60,4 @@ npm run test
 - Styled components
 - Jest
 - React testing library
+- Cypress

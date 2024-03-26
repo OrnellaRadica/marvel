@@ -64,6 +64,7 @@ const ClearButton = styled.button`
   color: #eb2328;
   font-weight: 600;
   margin-left: auto;
+  font-size: 16px;
 
   &:focus {
     outline-color: #eb2328;
